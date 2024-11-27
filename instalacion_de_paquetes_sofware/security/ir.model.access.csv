@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_instalacion_de_paquetes_sofware_instalacion_de_paquetes_sofware,instalacion_de_paquetes_sofware.instalacion_de_paquetes_sofware,model_instalacion_de_paquetes_sofware_instalacion_de_paquetes_sofware,base.group_user,1,1,1,1
