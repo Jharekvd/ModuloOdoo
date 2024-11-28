@@ -6,25 +6,27 @@
             <field name="model">instalacion_de_paquetes_sofware.instalacion_de_paquetes_sofware</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="name" widget="char"/>
-                    <field name="version" widget="char"/>
-                    <field name="product_id" widget="int"/>
-                    <field name="software_start_date" widget="string"/>
+                    <field name="name"/>
+                    <field name="version"/>
+                    <field name="compatible_systems"/>
+                    <field name="price"/>
+                    <field name="software_start_date"/>
                 </tree>
             </field>
         </record>
-
         <!-- Vista tipo formulario en Form View -->
         <record model="ir.ui.view" id="view_instalacion_de_paquetes_sofware_form">
             <field name="name">instalacion.de.paquetes.sofware.form</field>
             <field name="model">instalacion_de_paquetes_sofware.instalacion_de_paquetes_sofware</field>
             <field name="arch" type="xml">
-                <form>
+                <form string="Paquete de Software"> 
                     <sheet>
                         <group>
                             <field name="name"/>
                             <field name="version"/>
-                            <field name="product_id"/>
+                            <field name="compatible_systems"/>
+                            <field name="price" />
+                            <field name="product_ids" widget="many2many_tags"/>
                             <field name="software_start_date"/>
                             <field name="description"/>
                         </group>
@@ -32,20 +34,18 @@
                 </form>
             </field>
         </record>
-
         <!-- Acción para abrir vistas Tree y Form -->
         <record model="ir.actions.act_window" id="action_instalacion_de_paquetes_sofware">
-            <field name="name">Gestión de Paquetes</field>
+            <field name="name">Gestión de Paquetes de Software</field>
             <field name="res_model">instalacion_de_paquetes_sofware.instalacion_de_paquetes_sofware</field>
             <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_instalacion_de_paquetes_sofware_tree"/>
         </record>
-
         <!-- Menús -->
         <!-- Menú principal -->
-        <menuitem name="Gestión de Software" id="menu_instalacion_de_paquetes_sofware_root" sequence="1"/>
-
+        <menuitem name="Gestión de Software" id="menu_instalacion_de_paquetes_sofware_root" sequence="10"/>
         <!-- Submenú -->
-        <menuitem name="Paquetes de Software" id="menu_instalacion_de_paquetes_sofware" parent="menu_instalacion_de_paquetes_sofware_root" action="action_instalacion_de_paquetes_sofware" sequence="1"/>
+        <menuitem name="Paquetes de Software" id="menu_instalacion_de_paquetes_sofware" parent="menu_instalacion_de_paquetes_sofware_root" action="action_instalacion_de_paquetes_sofware" sequence="10"/>
     </data>
 </odoo>
 
