@@ -1,0 +1,66 @@
+<odoo>
+    <!-- Vista Formulario personalizada para Backmarket -->
+    <record id="view_backmarket_form" model="ir.ui.view">
+        <field name="name">backmarket.form</field>
+        <field name="model">back_market.back_market</field> <!-- Modelo corregido -->
+        <field name="arch" type="xml">
+            <form string="Gestión de Backmarket">
+                <sheet>
+                    <group>
+                        <field name="partner_id"/> <!-- Correcto: cliente -->
+                        <field name="return_date"/> <!-- Correcto: fecha de devolución -->
+                        <field name="status"/> <!-- Correcto: estado -->
+                    </group>
+                    <group string="Detalles de Backmarket">
+                        <field name="aplicar_descuento_devolucion"/>
+                        <field name="is_returned"/> <!-- Correcto: producto devuelto -->
+                    </group>
+                    <notebook>
+                        <page string="Productos">
+                            <field name="sale_order_line" widget="one2many">
+                                <tree editable="bottom">
+                                    <field name="product_id" required='1'/>
+                                    <field name="product_uom_qty"/>
+                                    <field name="price_unit"/>
+                                    <field name="order_id"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista Tree personalizada -->
+    <record id="view_backmarket_tree" model="ir.ui.view">
+        <field name="name">backmarket.tree</field>
+        <field name="model">back_market.back_market</field> <!-- Modelo corregido -->
+        <field name="arch" type="xml">
+            <tree string="Pedidos Backmarket">
+                <field name="partner_id"/> <!-- Correcto: cliente -->
+                <field name="return_date"/> <!-- Correcto: fecha de devolución -->
+                <field name="status"/> <!-- Correcto: estado -->
+                <field name="aplicar_descuento_devolucion"/>
+                <field name="is_returned"/> <!-- Correcto: producto devuelto -->
+            </tree>
+        </field>
+    </record>
+
+    <!-- Acción para vistas -->
+    <record id="action_backmarket_management" model="ir.actions.act_window">
+        <field name="name">Gestión Backmarket</field>
+        <field name="res_model">back_market.back_market</field> <!-- Modelo corregido -->
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_backmarket_tree"/>
+    </record>
+
+    <!-- Menú para Backmarket -->
+    <menuitem id="menu_backmarket_management" name="Gestión Backmarket"
+              parent="sale.sale_order_menu"
+              sequence="15"/>
+    <menuitem id="submenu_backmarket_management" name="Pedidos Backmarket"
+              parent="menu_backmarket_management"
+              action="action_backmarket_management"
+              sequence="10"/>
+</odoo>
