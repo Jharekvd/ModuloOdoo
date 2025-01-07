@@ -1,0 +1,48 @@
+<odoo>
+    <!--Vista formulario-->
+    <record id="view_warranty_management_form" model="ir.ui.view">
+        <field name="name">warranty.management.form</field>
+        <field name="model">warranty.management</field>
+        <field name="arch" type="xml">
+            <form string="Gestión de Garantías">
+                <group>
+                    <field name="product_id"/>
+                    <field name="customer_id"/>
+                    <field name="sale_id"/>
+                    <field name="warranty_start_date"/>
+                    <field name="warranty_duration"/>
+                    <field name="warranty_end_date" readonly="1"/>
+                    <field name="status"/>
+                </group>
+            </form>
+        </field>
+    </record>
+    <!--vista del diseño-->
+    <record id="view_warranty_management_tree" model="ir.ui.view">
+        <field name="name">warranty.management.tree</field>
+        <field name="model">warranty.management</field>
+        <field name="arch" type="xml">
+            <tree string="Garantías">
+                <field name="product_id"/>
+                <field name="customer_id"/>
+                <field name="warranty_start_date"/>
+                <field name="warranty_end_date"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_warranty_management" model="ir.actions.act_window">
+        <field name="name">Gestión de Garantías</field>
+        <field name="res_model">warranty.management</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_warranty_management_tree"/>
+    </record>
+
+    <menuitem id="menu_warranty_management" name="Gestión de Garantías"
+              parent="sale.sale_order_menu"
+              sequence="10"/>
+    <menuitem id="submenu_warranty_management" name="Garantías"
+              parent="menu_warranty_management"
+              action="action_warranty_management"/>
+</odoo>
